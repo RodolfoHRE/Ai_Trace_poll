@@ -1,0 +1,50 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+
+
+/* nome do site */
+
+.nome {
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 20px;
+}
+.navbar {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.item {
+  flex-grow: 1;
+}
+
+body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to right, #083C8F 0%, #0A2F70 10%, #0B275C 20%, #0D2454 30%, #0F234E 40%, #142045 50%, #22203B 60%, #312234 70%, #3E232E 80%, #532628 90%, #7D301F 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      color: #FFFFFF;
+    }
+
+/* div principal */
+
+body .container{
+
+    border-radius: 12px;
+    padding: 2%;  /* ajustar valor*/
+    background-color: #E0E0E0;
+    color: #121212;
+    font-family: 'Nunito', sans-serif;
+}
