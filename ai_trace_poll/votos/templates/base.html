@@ -3,7 +3,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Ai Trace</title>
+    <title>{% block title %}Ai Trace{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -19,7 +19,14 @@
                 <button>Iniciar</button>
             </div>
         </div>
-
     </header>
+
+    <main>
+        <div class="container">
+            {% block content %}
+            <!-- Conteúdo das páginas específicas será inserido aqui -->
+            {% endblock %}
+        </div>
+    </main>
 </body>
 </html>

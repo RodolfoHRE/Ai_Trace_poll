@@ -11,15 +11,15 @@ header {
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content:space-around;
     padding: 16px 32px;
     background-color: transparent;
-    backdrop-filter: blur(6px);
+    
 }
 
 /* Proporções */
 .logo-container {
-    flex: 0 0 20%;
+    flex: 0 0 15%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -27,8 +27,8 @@ header {
 .logo-circle {
     background-color: white;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -36,30 +36,34 @@ header {
 .nome {
     flex: 0 0 60%;
     text-align: center;
-    font-size: 1.5rem;
+    
+    font-size: 1.7rem;
     font-weight: bold;
     font-family: 'Orbitron', sans-serif;
 }
 
 .botao-container {
-    flex: 0 0 20%;
+    flex: 0 0 15%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+
+ 
 }
 
 /* Logo */
 .logo {
-  width: 35px;
+  width: 80%;
   height: auto;
 }
 button {
     padding: 8px 16px;
-    background-color: #ffffff22;
+    background: linear-gradient(to bottom, #E0E0E050, #7A7A7A50);
     color: white;
     border: 1px solid white;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 button:hover {
@@ -78,9 +82,36 @@ body {
 
 body .container{
 
-    border-radius: 12px;
-    padding: 2%;  /* ajustar valor*/
+    border-radius: 45px;
+    margin-top: 7%;
+    margin-right: 15%;
+    margin-left: 15%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 2%;
+    padding-bottom: 4%;
+    width: auto;
+    align-items: center;
     background-color: #E0E0E0;
     color: #121212;
     font-family: 'Nunito', sans-serif;
+}
+
+
+body .container h2 {
+    text-align: center;
+    font-weight:500;
+    font-size: xx-large;
+}
+body .container h2 {
+    text-align: center;
+    font-weight:500;
+    font-size: xx-large;
+}
+
+body .container input{
+    border-radius: 15px;
+    width: 100%;
+    height: 30px;
+    font-size: large;
 }
