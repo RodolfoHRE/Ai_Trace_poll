@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,12 +8,18 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="item logo"><img src="{% static 'img/logo.svg' %}" alt="Logo do site" class="logo"></div>
-            <div class="item nome">Ai Trace</div>
-            <div class="item"><button>Iniciar</button></div>
+        <div class="navbar">
+            <div class="logo-container">
+                <div class="logo-circle">
+                    <img src="{% static 'img/logo.svg' %}" alt="Logo do site" class="logo">
+                </div>
+            </div>
+            <div class="nome"><h1>Ai Trace</h1></div>
+            <div class="botao-container">
+                <button>Iniciar</button>
+            </div>
         </div>
-        
+
     </header>
 </body>
 </html>
