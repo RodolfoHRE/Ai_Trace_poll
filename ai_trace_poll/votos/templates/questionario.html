@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Questionário - Ai Trace{% endblock %}
+
+{% block botao %}
+    <button>Finalizar</button>
+{% endblock %}
+{% block content %}
+    
+  {% csrf_token %}
+  {% for imagem in imagens %}
+  <div class="item-voto">
+    <h2>   Você acha que as imagens a seguir foram geradas por IA ou feita por seres humanos ?</h2>
+    <img class="imagem-questionario" src="{{ imagem.arquivo.url }}" alt="Imagem">
+    <span><button>Humano</button> <button>Humano</button></span>
+
+  </div>
+{% endfor %}
+
+{% endblock %}

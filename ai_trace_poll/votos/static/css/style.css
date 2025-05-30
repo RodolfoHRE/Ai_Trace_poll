@@ -51,6 +51,16 @@ header {
  
 }
 
+.imagem-questionario {
+  max-width: 75%;  /* tamanho que quiser */
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  display: block;
+  margin: 5% auto 5% auto;
+}
+
 /* Logo */
 .logo {
   width: 80%;
@@ -98,20 +108,23 @@ body .container{
 }
 
 
-body .container h2 {
+
+body .container h2 .titulo {
     text-align: center;
     font-weight:500;
     font-size: xx-large;
 }
-body .container h2 {
-    text-align: center;
-    font-weight:500;
-    font-size: xx-large;
-}
+
 
 body .container input{
     border-radius: 15px;
     width: 100%;
     height: 30px;
     font-size: large;
+}
+
+body .item-voto{
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    color: #121212;
 }

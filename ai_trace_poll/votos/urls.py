@@ -4,5 +4,6 @@ from . import views
 from django.http import HttpResponse
 
 urlpatterns = [
-    path('inicio/', views.start, name = 'start')
+    path('', views.inicioView, name='home'),
+    path('questionario', views.questionarioView, name='questionario')
 ]

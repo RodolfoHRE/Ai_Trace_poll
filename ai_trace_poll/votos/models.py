@@ -6,9 +6,12 @@ class UsuarioVotante(models.Model):
     votou_em = models.DateTimeField(auto_now_add=True)
 
 class Imagem(models.Model):
-    imagem = models.ImageField(upload_to='imagens/')
-    nome = models.CharField(max_length=100)
-    fonte = models.CharField(max_length=6)
+    ORIGEM_CHOICES = (
+        ('humano', 'Feita por Humano'),
+        ('ia', 'Gerada por IA'),
+    )
+    arquivo = models.ImageField(upload_to='imagens/')
+    origem = models.CharField(max_length=10, choices=ORIGEM_CHOICES)
 
 class Voto(models.Model):
     email = models.ForeignKey(UsuarioVotante, on_delete=models.CASCADE)

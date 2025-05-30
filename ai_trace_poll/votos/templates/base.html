@@ -16,7 +16,9 @@
             </div>
             <div class="nome"><h1>Ai Trace</h1></div>
             <div class="botao-container">
-                <button>Iniciar</button>
+                {% block botao %}
+                    <button >Iniciar</button>
+                {% endblock %}
             </div>
         </div>
     </header>
@@ -28,5 +30,6 @@
             {% endblock %}
         </div>
     </main>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
