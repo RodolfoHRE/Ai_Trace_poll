@@ -3,7 +3,7 @@
 {% block title %}Ai Trace{% endblock %}
 
 {% block botao %}
-    <button type=" button" onclick="Iniciar()">Iniciar</button>
+    <button type=" button" class="botao-lateral" onclick="iniciar()">Iniciar</button>
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
 
 {% block scripts %}
 <script>
-    function Iniciar() {
+    function iniciar() {
     window.location.href = "{% url 'questionario' %}";
 }
 </script>

@@ -3,7 +3,7 @@
 {% block title %}Questionário - Ai Trace{% endblock %}
 
 {% block botao %}
-    <button>Finalizar</button>
+    <button  type=" button" class="botao-lateral" onclick="finalizar()">Finalizar</button>
 {% endblock %}
 {% block content %}
     
@@ -12,9 +12,20 @@
   <div class="item-voto">
     <h2>   Você acha que as imagens a seguir foram geradas por IA ou feita por seres humanos ?</h2>
     <img class="imagem-questionario" src="{{ imagem.arquivo.url }}" alt="Imagem">
-    <span><button>Humano</button> <button>Humano</button></span>
+    <span>
+      <button type="button" class="botao-resposta" style="background-color: #0B275C;">Humano</button>
+       <button type="button" class="botao-resposta" style="background-color: #7D301F;">Inteligência Artificial</button>
+      </span>
 
   </div>
 {% endfor %}
 
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function finalizar() {
+    window.location.href = "{% url 'agradecimento' %}";
+}
+</script>
 {% endblock %}

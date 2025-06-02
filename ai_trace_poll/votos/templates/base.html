@@ -9,15 +9,19 @@
 <body>
     <header>
         <div class="navbar">
+            
             <div class="logo-container">
+                {% block logo %}
                 <div class="logo-circle">
                     <img src="{% static 'img/logo.svg' %}" alt="Logo do site" class="logo">
                 </div>
+                {% endblock %}
             </div>
+            
             <div class="nome"><h1>Ai Trace</h1></div>
             <div class="botao-container">
                 {% block botao %}
-                    <button >Iniciar</button>
+                    <button>Iniciar</button>
                 {% endblock %}
             </div>
         </div>

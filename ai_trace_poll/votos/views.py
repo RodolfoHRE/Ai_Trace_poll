@@ -10,3 +10,6 @@ def questionarioView(request):
 
     imagens = Imagem.objects.all().order_by('id')[:1]  # Apenas uma imagem por enquanto
     return render(request, 'questionario.html', {'imagens': imagens})
+
+def agradecimentoView(request):
+    return render(request, 'agradecimento.html')
