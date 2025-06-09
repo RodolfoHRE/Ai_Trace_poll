@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Questionário - Ai Trace{% endblock %}
 
@@ -8,17 +9,17 @@
 {% block content %}
     
   {% csrf_token %}
-  {% for imagem in imagens %}
+<!-- colocar for, posteriormente -->
   <div class="item-voto">
     <h2>   Você acha que as imagens a seguir foram geradas por IA ou feita por seres humanos ?</h2>
-    <img class="imagem-questionario" src="{{ imagem.arquivo.url }}" alt="Imagem">
+    <img class="imagem-questionario" src="{% static 'img/imagem_teste.png' %}" alt="Imagem">
     <span>
       <button type="button" class="botao-resposta" style="background-color: #0B275C;">Humano</button>
        <button type="button" class="botao-resposta" style="background-color: #7D301F;">Inteligência Artificial</button>
       </span>
 
   </div>
-{% endfor %}
+<!-- fim do for -->
 
 {% endblock %}
 
