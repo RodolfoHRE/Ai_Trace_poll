@@ -47,8 +47,6 @@ header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
- 
 }
 
 .imagem-questionario {
@@ -81,19 +79,52 @@ button.botao-lateral {
     border: 1px solid white;
 }
 
-/* Botão de resposta (ex: do questionário) */
-button.botao-resposta {
-    padding: 12px 24px;
-    margin-left: 10%;
-    margin-right: 10%;
-    color: #fff;
-    border: 2px solid #3e8ed0;
-    transition: background-color 0.2s ease;
+button.botao-submit {
+
+    width: auto;        /* <-- ESSENCIAL */
+    display: inline-block;
+    padding: 8px 16px;
+    background: linear-gradient(to bottom, #0B275C, #7D301F);
+    color: white;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
 }
 
-button:hover {
-    background-color: #ffffff44;
+.botao-wrapper {
+    text-align: right;
 
+}
+button.botao-iniciar {
+
+     width: auto;        /* <-- ESSENCIAL */
+    display: inline-block;
+    padding: 8px 16px;
+    background: linear-gradient(to bottom,  #083C8F 0%, #0A2F70 10%, #0B275C 20%, #0D2454 30%, #0F234E 40%, #142045 50%, #22203B 60%, #312234 70%, #3E232E 80%, #532628 90%, #7D301F 100%);
+    color: white;
+    border: 1px solid white;
+}
+
+/* Botão de resposta (ex: do questionário) */
+.botao-resposta {
+    padding: 10px 20px;
+    border-radius: 12px;
+    background-color: #083c8f;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.botao-resposta.humano {
+    background-color: #0B275C;
+}
+
+.botao-resposta.ia {
+    background-color: #7D301F;
+}
+
+label:hover .botao-resposta {
+    background-color: #555;
 }
 body {
       margin: 0;
@@ -102,6 +133,14 @@ body {
       overflow: hidden;
       color: #FFFFFF;
     }
+
+    form {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 12px; /* espaço entre os elementos */
+}
+
 
 /* div principal */
 
@@ -143,6 +182,69 @@ body .item-voto{
     font-family: 'Nunito', sans-serif;
     color: #121212;
 }
+
+.opcoes-voto {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.opcoes-voto label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.opcoes-voto input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #083C8F; /* cor moderna pro radio, funciona nos navegadores atuais */
+}
+
+
+.mensagens {
+    list-style: none;
+    text-align: center;
+    width: fit-content;
+    max-width: 90%;
+    padding: 10px 20px;
+    background-color: #FFCCCC;
+    border: 1px solid #FF0000;
+    color: #900;
+    border-radius: 8px;
+    margin: auto; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media (max-width: 500px) {
@@ -229,6 +331,16 @@ body .item-voto{
     margin: 5% 5%;
     padding: 5%;
     border-radius: 30px;
+  }
+
+  .botao-wrapper {
+  text-align: center; /* Centraliza o botão no mobile */
+}
+
+  button.botao-iniciar {
+    width: 60%;          /* Deixa o botão mais largo no mobile */
+    font-size: 1rem;   /* Texto maior para toque fácil */
+    padding: 12px 0;     /* Mais área clicável */
   }
 
 }

@@ -4,29 +4,41 @@
 {% block title %}Questionário - Ai Trace{% endblock %}
 
 {% block botao %}
-    <button  type=" button" class="botao-lateral" onclick="finalizar()">Finalizar</button>
-{% endblock %}
-{% block content %}
     
-  {% csrf_token %}
-<!-- colocar for, posteriormente -->
-  <div class="item-voto">
-    <h2>   Você acha que as imagens a seguir foram geradas por IA ou feita por seres humanos ?</h2>
-    <img class="imagem-questionario" src="{% static 'img/imagem_teste.png' %}" alt="Imagem">
-    <span>
-      <button type="button" class="botao-resposta" style="background-color: #0B275C;">Humano</button>
-       <button type="button" class="botao-resposta" style="background-color: #7D301F;">Inteligência Artificial</button>
-      </span>
+{% endblock %}
 
-  </div>
-<!-- fim do for -->
+{% block content %}
+
+<h2>Você acha que as imagens a seguir foram geradas por IA ou feitas por seres humanos?</h2>
+
+<form id="form-resposta" method="POST">
+    {% csrf_token %}
+
+    <!-- Loop de imagens futuramente -->
+    <div class="item-voto">
+        <img class="imagem-questionario" src="{% static 'img/imagem_teste.png' %}" alt="Imagem">
+        
+        <!-- Input hidden para identificar a imagem -->
+        <input type="hidden" name="imagem_id" value="1"> <!-- isso vem do backend depois -->
+
+         <div class="opcoes-voto">
+            <label>
+                <input type="radio" name="resposta" value="Humano" required>
+                <span class="botao-resposta humano">Humano</span>
+            </label>
+
+            <label>
+                <input type="radio" name="resposta" value="IA">
+                <span class="botao-resposta ia">Inteligência Artificial</span>
+            </label>
+        </div>
+    </div>
+    <div class="botao-wrapper">
+        <button type="submit" form="form-resposta" class="botao-submit">Finalizar</button>
+    </div>
+    
+</form>
 
 {% endblock %}
 
-{% block scripts %}
-<script>
-    function finalizar() {
-    window.location.href = "{% url 'agradecimento' %}";
-}
-</script>
-{% endblock %}
+
