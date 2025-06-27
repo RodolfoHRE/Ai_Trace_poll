@@ -10,8 +10,31 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+
 from pathlib import Path
+from enum import StrEnum
 import os
+
+
+
+class Envs(StrEnum):
+    PRODUCTION = 'production'
+    DEVELOPMENT = 'development'
+
+
+def get_secret(key: str, default: str = '') -> str:
+    value = os.getenv(key, default)
+    if os.path.isfile(value):
+        with open(value) as f:
+            return f.read()
+    return value
+
+
+
+ENVIRONMENT = os.getenv('ENVIRONMENT')
+SECRET_KEY = get_secret('SECRET_KEY')
+DJANGO_PORT = os.getenv('DJANGO_PORT', '8000')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,6 +55,15 @@ SECRET_KEY = 'django-insecure-%nr^nbj)wcr-j%82wq3%6gok76+1=u2$&bqu-bbg4400a+orit
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+if ENVIRONMENT == Envs.PRODUCTION:
+    DEBUG = False
+    ALLOWED_HOSTS = ['saude.digital.local']
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+elif ENVIRONMENT == Envs.DEVELOPMENT:
+    DEBUG = True
+    ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
+
 
 
 # Application definition
