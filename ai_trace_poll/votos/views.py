@@ -40,37 +40,34 @@ def questionarioView(request):
         return redirect('home')
 
     usuario = get_object_or_404(UsuarioVotante, email=email)
+    total_imagens = 4  # Atualize conforme o número de imagens
 
     if request.method == 'POST':
-        imagem_id = request.POST.get('imagem_id')
-        resposta = request.POST.get('resposta')
+        votos = []
+        for i in range(1, total_imagens + 1):
+            imagem_id = request.POST.get(f'imagem_id_{i}')
+            resposta = request.POST.get(f'resposta_{i}')
+            if imagem_id and resposta:
+                votos.append((imagem_id, resposta))
 
-        if not imagem_id or not resposta:
-            messages.error(request, 'Resposta inválida. Tente novamente.')
+        if not votos:
+            messages.error(request, 'Nenhuma resposta foi enviada. Tente novamente.')
             return redirect('questionario')
 
         try:
             with transaction.atomic():
-                imagem = get_object_or_404(Imagem, id=imagem_id)
-
-                # Verificar se já existe voto para essa imagem e esse usuário (se for necessário)
-                if Voto.objects.filter(email=usuario, imagem=imagem).exists():
-                    messages.error(request, 'Você já respondeu essa imagem.')
-                    return redirect('agradecimento')
-
-                # Criar o voto
-                Voto.objects.create(
-                    email=usuario,
-                    imagem=imagem,
-                    resposta=resposta
-                )
-
+                for imagem_id, resposta in votos:
+                    imagem = get_object_or_404(Imagem, id=imagem_id)
+                    if not Voto.objects.filter(email=usuario, imagem=imagem).exists():
+                        Voto.objects.create(
+                            email=usuario,
+                            imagem=imagem,
+                            resposta=resposta
+                        )
                 return redirect('agradecimento')
-
         except IntegrityError as e:
             messages.error(request, f'Ocorreu um erro no banco. ({str(e)})')
             return redirect('questionario')
-
         except Exception as e:
             messages.error(request, f'Ocorreu um erro inesperado. ({str(e)})')
             return redirect('questionario')
@@ -83,4 +80,17 @@ def questionarioView(request):
 
 
 def agradecimentoView(request):
-    return render(request, 'agradecimento.html')
+    email = request.session.get('email')
+    acertos = 0
+    total = 0
+    percentual = None
+    if email:
+        usuario = get_object_or_404(UsuarioVotante, email=email)
+        votos = Voto.objects.filter(email=usuario)
+        total = votos.count()
+        for voto in votos:
+            if (voto.resposta == 'HUMANO' and voto.imagem.origem == 'humano') or (voto.resposta == 'IA' and voto.imagem.origem == 'ia'):
+                acertos += 1
+        if total > 0:
+            percentual = round((acertos / total) * 100)
+    return render(request, 'agradecimento.html', {'percentual': percentual, 'acertos': acertos, 'total': total})

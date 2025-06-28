@@ -10,7 +10,6 @@
 <body>
     <header>
         <div class="navbar">
-            
             <div class="logo-container">
                 {% block logo %}
                 <div class="logo-circle">
@@ -18,27 +17,26 @@
                 </div>
                 {% endblock %}
             </div>
-            
-            <div class="nome"><h1>Ai Trace</h1></div>
+            <div class="nome"><h1><a href="{% url 'home' %}" style="color: inherit; text-decoration: none;">Ai Trace</a></h1></div>
             <div class="botao-container">
                 {% block botao %}
                     <div class="botao-container">
-            <div class="dropdown">
-                <button class="dropbtn">
-                    <span class="texto-contato">Contato</span>
-                        <img class="icone-contato-mobile" src="{% static 'img/icons/contato.png' %}" alt="Contato" /></button>
-                    <div class="dropdown-content">
-                        <a href="mailto:rodolfohre@gmail.com"><img src="{% static 'img/icons/email.png' %}" alt="Email" class="icone-link">Email</a>
-                        <a href="https://github.com/RodolfoHRE" target="_blank"><img src="{% static 'img/icons/github.png' %}" alt="GitHub" class="icone-link">GitHub</a>
-                        <a href="https://www.linkedin.com/in/rodolfo-h-raymundo-engelmann/" target="_blank"><img src="{% static 'img/icons/linkedin.png' %}" alt="LinkedIn" class="icone-link">LinkedIn</a>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <span class="texto-contato">Contato</span>
+                                <img class="icone-contato-mobile" src="{% static 'img/icons/contato.png' %}" alt="Contato" />
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="mailto:rodolfohre@gmail.com"><img src="{% static 'img/icons/email.png' %}" alt="Email" class="icone-link">Email</a>
+                                <a href="https://github.com/RodolfoHRE" target="_blank"><img src="{% static 'img/icons/github.png' %}" alt="GitHub" class="icone-link">GitHub</a>
+                                <a href="https://www.linkedin.com/in/rodolfo-h-raymundo-engelmann/" target="_blank"><img src="{% static 'img/icons/linkedin.png' %}" alt="LinkedIn" class="icone-link">LinkedIn</a>
+                            </div>
+                        </div>
                     </div>
-            </div>
-            </div>
                 {% endblock %}
             </div>
         </div>
     </header>
-
     <main>
         <div class="container">
             {% block content %}
