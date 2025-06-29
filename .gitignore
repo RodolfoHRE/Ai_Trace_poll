@@ -1,6 +1,9 @@
 certs
 nginx/*.conf
 media/
+resultado/
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

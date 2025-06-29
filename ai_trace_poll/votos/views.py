@@ -40,7 +40,7 @@ def questionarioView(request):
         return redirect('home')
 
     usuario = get_object_or_404(UsuarioVotante, email=email)
-    total_imagens = 4  # Atualize conforme o número de imagens
+    total_imagens = 10  # Atualize conforme o número de imagens
 
     if request.method == 'POST':
         votos = []

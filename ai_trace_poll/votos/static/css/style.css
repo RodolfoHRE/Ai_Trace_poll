@@ -99,14 +99,17 @@ header {
 
 
 .imagem-questionario {
-  max-width: 75%;  /* tamanho que quiser */
+  max-width: 60%;  /* tamanho que quiser */
   width: 100%;
   height: auto;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
   display: block;
-  margin: 5% auto 5% auto;
+  margin: 20px auto 20px auto;
 }
+
+
+
 
 /* Logo */
 .logo {
