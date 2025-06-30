@@ -2,6 +2,7 @@ certs
 nginx/*.conf
 media/
 resultado/
+nginx.conf
 
 
 

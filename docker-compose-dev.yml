@@ -1,0 +1,22 @@
+services:
+
+  django:
+    build: .
+    image: ai_trace_poll_django:latest
+    container_name: django_dev
+    environment:
+      ENVIRONMENT: development
+      SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_PORT: ${DJANGO_PORT}
+    volumes:
+      - ./django_server:/app/django_server
+    ports:
+      - "${DJANGO_PORT}:8000"
+    networks:
+      - compose_network
+
+
+networks:
+  compose_network:
+    name: dev_network
+    driver: bridge

@@ -1,0 +1,50 @@
+services:
+
+  django:
+    build: .
+    image: ai_trace_poll_django:latest
+    container_name: django_production
+    environment:
+      ENVIRONMENT: production
+      SECRET_KEY: /run/secrets/django_secret_key
+      DJANGO_PORT: ${DJANGO_PORT}
+    secrets:
+      - django_secret_key
+    volumes:
+      - ./django_server:/app/django_server
+      - static_volume:/static
+    expose:
+      - ${DJANGO_PORT}
+    networks:
+      - compose_network
+
+  nginx:
+    image: nginx:1.27.1-bookworm
+    container_name: nginx_production
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - static_volume:/usr/share/nginx/html/static:ro
+
+    ports:
+      - "${NGINX_HTTP_PORT}:80"
+      - "${NGINX_HTTPS_PORT}:443"
+    networks:
+      - compose_network
+    depends_on:
+      - django
+
+volumes:
+  static_volume:
+    name: production_static_volume
+    driver: local
+
+
+networks:
+  compose_network:
+    name: production_network
+    driver: bridge
+
+secrets:
+  django_secret_key:
+    environment: DJANGO_SECRET_KEY

@@ -30,14 +30,14 @@ def get_secret(key: str, default: str = '') -> str:
     return value
 
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 ENVIRONMENT = os.getenv('ENVIRONMENT')
 SECRET_KEY = get_secret('SECRET_KEY')
 DJANGO_PORT = os.getenv('DJANGO_PORT', '8000')
 
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 #Media directory
@@ -48,22 +48,24 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%nr^nbj)wcr-j%82wq3%6gok76+1=u2$&bqu-bbg4400a+orit'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = []
 
 if ENVIRONMENT == Envs.PRODUCTION:
     DEBUG = False
-    ALLOWED_HOSTS = ['saude.digital.local']
+    ALLOWED_HOSTS = ['questionario.aitrace.online']
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    
+    
 elif ENVIRONMENT == Envs.DEVELOPMENT:
     DEBUG = True
     ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
+if ENVIRONMENT == Envs.PRODUCTION:
+    STATIC_URL = 'https://questionario.aitrace.online/static/'
+    STATIC_ROOT = '/static/'
+elif ENVIRONMENT == Envs.DEVELOPMENT:
+    STATIC_URL = 'static/'
 
 
 # Application definition
