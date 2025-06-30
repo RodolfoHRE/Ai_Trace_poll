@@ -12,6 +12,7 @@ services:
       - django_secret_key
     volumes:
       - ./django_server:/app/django_server
+      - ./data/sqlite/db.sqlite3:/app/django_server/db.sqlite3
       - static_volume:/static
     expose:
       - ${DJANGO_PORT}
