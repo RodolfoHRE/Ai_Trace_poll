@@ -13,21 +13,10 @@ class Imagem(models.Model):
         ('humano', 'Feita por Humano'),
         ('ia', 'Gerada por IA'),
     )
-    IMAGE_CHOICES = (
-        ('imagem1', 'Imagem 1'),
-        ('imagem2', 'Imagem 2'),
-        ('imagem3', 'Imagem 3'),
-        ('imagem4', 'Imagem 4'),
-        ('imagem5', 'Imagem 5'),
-        ('imagem6', 'Imagem 6'),
-        ('imagem7', 'Imagem 7'),
-        ('imagem8', 'Imagem 8'),
-        ('imagem9', 'Imagem 9'),
-        ('imagem10', 'Imagem 10'),
-    )
 
-    arquivo = models.CharField(max_length=10, choices=IMAGE_CHOICES)
-    origem = models.CharField(max_length=10, choices=ORIGEM_CHOICES)
+
+    arquivo = models.CharField(max_length=50, null=False)
+    origem = models.CharField(max_length=10, choices=ORIGEM_CHOICES, null=False)
 
     def __str__(self):
         return f"{self.arquivo} - {self.origem}"
