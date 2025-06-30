@@ -5,6 +5,9 @@ class UsuarioVotante(models.Model):
     email = models.EmailField(primary_key=True)
     votou_em = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.email
+
 class Imagem(models.Model):
     ORIGEM_CHOICES = (
         ('humano', 'Feita por Humano'),
@@ -26,6 +29,9 @@ class Imagem(models.Model):
     arquivo = models.CharField(max_length=10, choices=IMAGE_CHOICES)
     origem = models.CharField(max_length=10, choices=ORIGEM_CHOICES)
 
+    def __str__(self):
+        return f"{self.arquivo} - {self.origem}"
+
 class Voto(models.Model):
     email = models.ForeignKey(UsuarioVotante, on_delete=models.CASCADE)
     imagem = models.ForeignKey(Imagem, on_delete=models.CASCADE)
@@ -33,3 +39,6 @@ class Voto(models.Model):
     RESPOSTAS = [('IA', 'IA'), ('HUMANO', 'Humano')]          
     resposta = models.CharField(max_length=6, choices=RESPOSTAS)
     ##
+    
+    def __str__(self):
+        return f"{self.email.email} - {self.imagem.arquivo} - {self.resposta}"
