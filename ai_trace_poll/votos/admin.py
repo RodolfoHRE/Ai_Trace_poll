@@ -11,7 +11,7 @@ class ImagemAdmin(admin.ModelAdmin):
 
     def preview(self, obj):
         if obj.arquivo:
-            return f'<img src="{obj.arquivo.url}" style="height:50px;"/>'
+            return f'<img src="{obj.arquivo}" style="height:50px;"/>'
         return 'Sem imagem'
 
     preview.allow_tags = True
