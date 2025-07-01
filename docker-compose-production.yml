@@ -12,7 +12,7 @@ services:
       - django_secret_key
     volumes:
       - ./ai_trace_poll:/app/ai_trace_poll
-      - ./db.sqlite3:/app/ai_trace_poll/db.sqlite3
+      - db_volume:/data
       - static_volume:/static
     expose:
       - ${DJANGO_PORT}
@@ -38,6 +38,9 @@ services:
 volumes:
   static_volume:
     name: production_static_volume
+    driver: local
+  db_volume:
+    name: production_db_volume
     driver: local
 
 
