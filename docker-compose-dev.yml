@@ -9,7 +9,8 @@ services:
       SECRET_KEY: ${DJANGO_SECRET_KEY}
       DJANGO_PORT: ${DJANGO_PORT}
     volumes:
-      - ./django_server:/app/django_server
+      - ./ai_trace_poll:/app/ai_trace_poll
+      - ./db.sqlite3:/app/ai_trace_poll/db.sqlite3
     ports:
       - "${DJANGO_PORT}:8000"
     networks:
