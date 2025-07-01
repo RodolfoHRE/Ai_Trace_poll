@@ -4,18 +4,10 @@ from .models import Imagem, UsuarioVotante, Voto
 
 @admin.register(Imagem)
 class ImagemAdmin(admin.ModelAdmin):
-    list_display = ('id', 'origem', 'preview')
+    list_display = ('id', 'origem', 'arquivo')
     list_filter = ('origem',)
     search_fields = ('id',)
     ordering = ('id',)
-
-    def preview(self, obj):
-        if obj.arquivo:
-            return f'<img src="{obj.arquivo}" style="height:50px;"/>'
-        return 'Sem imagem'
-
-    preview.allow_tags = True
-    preview.short_description = 'Preview'
 
 
 @admin.register(UsuarioVotante)
