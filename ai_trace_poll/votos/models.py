@@ -15,8 +15,8 @@ class Imagem(models.Model):
     )
 
 
-    arquivo = models.CharField(max_length=50, null=False)
-    origem = models.CharField(max_length=10, choices=ORIGEM_CHOICES, null=False)
+    arquivo = models.CharField(max_length=50)
+    origem = models.CharField(max_length=10, choices=ORIGEM_CHOICES)
 
     def __str__(self):
         return f"{self.arquivo} - {self.origem}"
