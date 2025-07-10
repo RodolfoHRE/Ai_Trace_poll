@@ -10,11 +10,17 @@ services:
       DJANGO_PORT: ${DJANGO_PORT}
     volumes:
       - ./ai_trace_poll:/app/ai_trace_poll
-      - ./db.sqlite3:/app/ai_trace_poll/db.sqlite3
+      - db_volume:/data
     ports:
       - "${DJANGO_PORT}:8000"
     networks:
       - compose_network
+
+
+volumes:
+  db_volume:
+    name: dev_db_volume
+    driver: local
 
 
 networks:

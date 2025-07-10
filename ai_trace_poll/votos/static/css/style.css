@@ -307,6 +307,56 @@ body .item-voto{
   text-shadow: 0 2px 8px #fff, 0 1px 0 #ccc;
   pointer-events: none;
 }
+
+.feedback-imagens-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 colunas em desktop */
+  gap: 16px;
+  padding: 20px;
+  justify-items: center; /* Centraliza os itens na célula da grid */
+}
+
+feedback-imagens-item {
+  position: relative; /* necessário para posicionar a imagem-res */
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+  max-width: 160px;
+}
+
+/* Imagem principal */
+.feedback-imagens-item-imagem {
+  width: 100%;
+  max-height: 160px;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* Ícone de certo/errado */
+.feedback-imagens-item-imagem-res {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.85;
+  border-radius: 50%;
+  padding: 2px;
+  pointer-events: none; /* evita que clique ou hover atrapalhem */
+}
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 600px) {
   .progress-circle {
     width: 90px;
@@ -314,6 +364,9 @@ body .item-voto{
   }
   .legenda {
     font-size: 1.1rem;
+  }
+  .feedback-imagens-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas por linha */
   }
 }
 
@@ -458,5 +511,12 @@ body .item-voto{
     font-size: 1rem;   /* Texto maior para toque fácil */
     padding: 12px 0;     /* Mais área clicável */
   }
+
+  .feedback-imagens-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas por linha */
+  }
+
+
+
 
 }

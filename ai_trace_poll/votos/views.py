@@ -84,13 +84,37 @@ def agradecimentoView(request):
     acertos = 0
     total = 0
     percentual = None
+    feedback = []
     if email:
         usuario = get_object_or_404(UsuarioVotante, email=email)
-        votos = Voto.objects.filter(email=usuario)
+        votos = Voto.objects.filter(email=usuario).select_related('imagem')
         total = votos.count()
-        for voto in votos:
-            if (voto.resposta == 'HUMANO' and voto.imagem.origem == 'humano') or (voto.resposta == 'IA' and voto.imagem.origem == 'ia'):
-                acertos += 1
+        # Ordena pela ordem das imagens do questionário
+        ordem_arquivos = [f'imagem{i}' for i in range(1, 11)]
+        votos_dict = {voto.imagem.arquivo: voto for voto in votos}
+        for nome in ordem_arquivos:
+            voto = votos_dict.get(nome)
+            if voto:
+                correto = (
+                    (voto.resposta == 'HUMANO' and voto.imagem.origem == 'humano') or
+                    (voto.resposta == 'IA' and voto.imagem.origem == 'ia')
+                )
+                if correto:
+                    acertos += 1
+                feedback.append({
+                    'arquivo': nome,
+                    'correto': correto,
+                })
+            else:
+                feedback.append({
+                    'arquivo': nome,
+                    'correto': None,
+                })
         if total > 0:
             percentual = round((acertos / total) * 100)
-    return render(request, 'agradecimento.html', {'percentual': percentual, 'acertos': acertos, 'total': total})
+    return render(request, 'agradecimento.html', {
+        'percentual': percentual,
+        'acertos': acertos,
+        'total': total,
+        'feedback': feedback,
+    })
