@@ -19,7 +19,7 @@ class UsuarioVotanteAdmin(admin.ModelAdmin):
 
 @admin.register(Voto)
 class VotoAdmin(admin.ModelAdmin):
-    list_display = ('email', 'imagem', 'resposta')
-    list_filter = ('resposta',)
+    list_display = ('email', 'imagem', 'resposta', 'acertou')
+    list_filter = ('resposta', 'acertou')
     search_fields = ('email__email', 'imagem__id')
     ordering = ('email',)

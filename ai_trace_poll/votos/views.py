@@ -59,10 +59,15 @@ def questionarioView(request):
                 for imagem_id, resposta in votos:
                     imagem = get_object_or_404(Imagem, id=imagem_id)
                     if not Voto.objects.filter(email=usuario, imagem=imagem).exists():
+                        acertou = (
+                            (resposta == 'HUMANO' and imagem.origem == 'humano') or
+                            (resposta == 'IA' and imagem.origem == 'ia')
+                        )
                         Voto.objects.create(
                             email=usuario,
                             imagem=imagem,
-                            resposta=resposta
+                            resposta=resposta,
+                            acertou=acertou
                         )
                 return redirect('agradecimento')
         except IntegrityError as e:
@@ -95,15 +100,11 @@ def agradecimentoView(request):
         for nome in ordem_arquivos:
             voto = votos_dict.get(nome)
             if voto:
-                correto = (
-                    (voto.resposta == 'HUMANO' and voto.imagem.origem == 'humano') or
-                    (voto.resposta == 'IA' and voto.imagem.origem == 'ia')
-                )
-                if correto:
+                if voto.acertou:
                     acertos += 1
                 feedback.append({
                     'arquivo': nome,
-                    'correto': correto,
+                    'correto': voto.acertou,
                 })
             else:
                 feedback.append({

@@ -39,6 +39,7 @@ class Voto(models.Model):
     ## Ideias, pode ser alterado
     RESPOSTAS = [('IA', 'IA'), ('HUMANO', 'Humano')]          
     resposta = models.CharField(max_length=6, choices=RESPOSTAS)
+    acertou = models.BooleanField(null=True, default=None) 
     ##
     
     def __str__(self):
